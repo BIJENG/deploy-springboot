@@ -1,0 +1,364 @@
+/* nav 꾸미기 */
+
+/* 네비게이션 바 색상 및 그림자 조정 */
+/* 네비게이션 바의 스타일링 */
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+  font-size: 35px;
+  font-weight: 700;
+  margin-right: 50px;
+}
+
+.nav-link {
+  color: #333;
+  font-weight: bold;
+
+}
+
+.nav-item {
+  margin-right: 10px; 
+}
+
+.nav-item:last-child {
+  margin-right: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-link:hover {
+  color: #000;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+}
+
+.btn-outline-primary {
+  color: #00b4d8;
+  border-color: #00b4d8;
+}
+
+.btn-outline-primary:hover {
+  background-color: #00b4d8;
+  color: white;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+
+/* ----------------------- section 부분 ------------------------- */
+.container.rank {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 80px; /* 네비게이션 바의 높이와 동일한 값으로 설정하여 네비게이션 바가 섹션 위에 오도록 조정 */
+}
+
+.leaderboard {
+    flex: 1;
+    max-width: 30rem;
+    margin-right: 2rem; /* 리더보드와 카드 섹션 사이 간격 조정 */
+}
+
+.hero-section {
+    flex: 1;
+}
+
+.rank * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.rank .leaderboard {
+    max-width: 30rem; /* 최대 너비를 더 크게 조정 */
+    margin: 3rem auto; /* 마진을 줄여서 중앙 정렬 */
+    border-radius: 1.5rem; /* 테두리의 둥글기를 더 크게 조정 */
+    box-shadow: 4px 4px 20px 2px #aaa; /* 그림자를 더 크게 조정 */
+    font-family: sans-serif;
+}
+
+.rank a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.rank header {
+    background-image: url(https://images.pexels.com/photos/774455/pexels-photo-774455.jpeg?auto=compress&cs=tinysrgb&w=600);
+    color: white;
+    text-transform: uppercase;
+    border-top-left-radius: 1.5rem; /* 헤더의 둥글기를 더 크게 조정 */
+    border-top-right-radius: 1.5rem;
+    height: 18rem; /* 헤더의 높이를 더 크게 조정 */
+    position: relative;
+}
+
+.rank h1 {
+    
+    
+    font-family: "Single Day", cursive;
+    font-weight: 400;
+    font-style: normal;
+    
+    /* color: red; */
+    font-size: 4rem; /* 제목의 크기를 더 크게 조정 */
+    line-height: 4rem;
+    position: absolute;
+    margin-left: 4rem;
+    top: 5rem;
+}
+
+.rank img {
+    height: 20rem; /* 이미지의 높이를 더 크게 조정 */
+    position: absolute;
+    bottom: 0;
+    right: 1.5rem; /* 이미지를 오른쪽으로 더 이동 */
+}
+
+.rank nav {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    font-size: 1.2rem; /* 네비게이션의 글꼴 크기를 더 크게 조정 */
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        transparent 15%, /* 그라디언트를 더 빠르게 변경 */
+        rgba(22, 22, 22, 0.5)
+    );
+}
+
+.rank nav a {
+    padding-top: 1.5rem; /* 패딩을 더 크게 조정 */
+    padding-bottom: 1.25rem;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.rank nav a.active {
+    border-bottom: 5px solid #f0a900; /* 활성화된 링크의 밑줄을 더 두껍게 조정 */
+}
+
+.rank nav a:first-child {
+    margin-left: 4rem; /* 여백을 더 크게 조정 */
+}
+
+.rank nav a + a {
+    margin-left: 1.5rem; /* 여백을 더 크게 조정 */
+}
+
+.rank table {
+    background-color: #16181e;
+    color: #999;
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom-left-radius: 1.5rem; /* 테이블의 둥글기를 더 크게 조정 */
+    border-bottom-right-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.rank thead {
+    font-size: 1rem; /* 헤더의 글꼴 크기를 더 크게 조정 */
+    color: #555;
+    text-transform: uppercase;
+}
+
+.rank tbody .nick {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem; /* 닉네임의 크기를 더 크게 조정 */
+}
+
+.rank tbody tr:nth-child(2n) {
+    background-color: #1f232c;
+}
+
+.rank .nick {
+    text-align: left;
+}
+
+.rank .rank,
+.rank .sp,
+.rank .kd {
+    text-align: right;
+}
+
+.rank .rank {
+    width: 6ch; /* 순위의 너비를 더 크게 조정 */
+    padding-left: 1.5rem; /* 왼쪽 여백을 더 크게 조정 */
+}
+
+.rank .sp,
+.rank .kd {
+    width: 10ch; /* SP와 KD의 너비를 더 크게 조정 */
+}
+
+.rank th {
+    padding: 2rem 1rem 1rem; /* 상단 패딩을 더 크게 조정 */
+}
+
+.rank td {
+    padding: 1.5rem 1rem; /* 패딩을 더 크게 조정 */
+}
+
+.rank-option:focus,
+.rank-option:hover,
+.rank-option:active {
+    color: #f0a900; /* 클릭되거나 호버되었을 때 글씨 색깔을 변경합니다 */
+    text-decoration: underline; /* 클릭된 링크에 밑줄을 추가합니다 */
+}
+
+/* ------------------------------------카드섹션부분------------------------------------ */
+
+:root{
+    --background-dark: #2d3548;
+    --text-light: rgba(255,255,255,0.6);
+    --text-lighter: rgba(255,255,255,0.9);
+    --spacing-s: 8px;
+    --spacing-m: 16px;
+    --spacing-l: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 64px;
+    --width-container: 1200px;
+  }
+  
+  /* *{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html{
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+  
+  body{
+    height: 100%;
+  } */
+  
+  
+  .hero-section{
+    align-items: flex-start;
+    background-image: white;
+    display: flex;
+    min-height: 100%;
+    justify-content: center;
+    padding: var(--spacing-xxl) var(--spacing-l);
+  }
+  
+  .card-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: var(--spacing-l);
+    grid-row-gap: var(--spacing-l);
+    max-width: var(--width-container);
+    width: 100%;
+  }
+  
+  @media(min-width: 540px){
+    .card-grid{
+      grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+  
+  @media(min-width: 960px){
+    .card-grid{
+      grid-template-columns: repeat(3, 1fr); /* 뷰포트 너비가 960px 이상인 경우 4개의 카드를 한 줄에 배치 */
+    }
+  }
+  
+  .card{
+    list-style: none;
+    position: relative;
+  }
+  
+  .card:before{
+    content: '';
+    display: block;
+    padding-bottom: 150%;
+    width: 100%;
+  }
+  
+  .card__background {
+    background-size: contain; /* 이미지가 컨테이너 안에 전체적으로 보이도록 설정 */
+    background-repeat: no-repeat; /* 이미지 반복 없이 한 번만 표시 */
+    background-position: center;
+    background-color: rgb(138, 8, 8);
+    border-radius: var(--spacing-l);
+    bottom: 0;
+    filter: brightness(0.75) saturate(1.2) contrast(0.85);
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform-origin: center;
+    transform: scale(1) translateZ(0);
+    transition: 
+      filter 200ms linear,
+      transform 200ms linear;
+  }
+  
+  .card:hover .card__background{
+    transform: scale(1.05) translateZ(0);
+  }
+  
+  .card-grid:hover > .card:not(:hover) .card__background{
+    filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+  }
+  
+  .card__content {
+    padding: var(--spacing-l);
+    position: absolute;
+    bottom: 0; /* 이미지의 하단에 위치하도록 수정 */
+    width: 100%; /* 카드 내용이 전체 너비를 차지하도록 수정 */
+    text-align: center; /* 내용을 가운데 정렬하도록 수정 */
+}
+  
+  .card__category{
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-s);
+    text-transform: uppercase;
+  }
+  
+  .card__heading{
+    color: white;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+    line-height: 1.4;
+    text-align: center;
+    word-spacing: normal; /* 수정된 부분 */
+  }

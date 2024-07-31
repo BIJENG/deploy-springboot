@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myboard.dao.UserChatCountDAO">
+
+    <resultMap type="com.example.myboard.vo.UserChatCountVO" id="userChatCountMap">
+        <result property="user_id"       column="user_id"/>
+        <result property="daily_count"   column="daily_count"/>
+        <result property="total_count"     column="total_count"/>
+        <result property="startTime"     column="startTime"/>
+    </resultMap>
+
+    <update id="chatCountUpdate">
+        UPDATE user_chat_count_tbl 
+        SET daily_count = daily_count + 1, total_count = total_count + 1
+        WHERE user_id = #{id}
+    </update>
+
+     <select id="chatCheckLimit" resultMap="userChatCountMap">
+        SELECT user_id, daily_count, total_count
+        FROM user_chat_count_tbl
+        WHERE user_id = #{id}
+    </select>
+
+    <select id="checkStartTime" resultMap="userChatCountMap">
+        SELECT *
+        FROM user_chat_count_tbl
+        WHERE user_id = #{id}
+    </select>
+
+    <update id="initDailyCount">
+        UPDATE user_chat_count_tbl 
+        SET daily_count = 0, startTime = CURRENT_TIMESTAMP
+        WHERE user_id = #{id}
+    </update>
+
+</mapper>

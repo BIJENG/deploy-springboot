@@ -1,0 +1,65 @@
+@charset 'utf-8';
+
+.section-name {
+    font-family: 'Times New Roman', Times, serif; /* 폰트 변경 */
+    font-size: 50px; /* 폰트 크기 변경 */
+    font-weight: bold; /* 폰트 굵기 변경 */
+    color: #000; /* 폰트 색상 변경 */
+}
+
+.section-text1 {
+    font-family: 'Times New Roman', Times, serif; /* 폰트 변경 */
+    font-size: 30px; /* 폰트 크기 변경 */
+    font-weight: bold; /* 폰트 굵기 변경 */
+    color: grey; /* 폰트 색상 변경 */
+}
+
+.section-text2 {
+    font-size: 1rem;
+    color: rgb(127, 163, 236);
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.section-text3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-left: 1%;
+    line-height: 0.5;
+}
+
+.image-container {
+    float: right;
+    margin-left: 20px;
+}
+
+.img1 {
+    overflow: hidden;
+}
+
+.img1 picture {
+    float: right;
+}
+
+.img1 img {
+    max-width: 100%;
+    height: auto;
+}
+
+.section-text4 {
+    font-size: 1rem;
+    color: rgb(127, 163, 236);
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+.section-text5 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-left: 1%;
+    line-height: 0.5;
+    text-align: right;
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myboard.dao.BoardDAO">
+
+    <resultMap type="com.example.myboard.vo.WineVO" id="wineMap">
+        <result property="no"           column="no"/>
+        <result property="name"         column="name"/>
+        <result property="acidity"      column="acidity"/>
+        <result property="balanced"     column="balanced"/>
+        <result property="body"         column="body"/>
+        <result property="bouquet"      column="bouquet"/>
+        <result property="buttery"      column="buttery"/>
+        <result property="citrus"       column="citrus"/>
+        <result property="dry"          column="dry"/>
+        <result property="earthy"       column="earthy"/>
+        <result property="easy"         column="easy"/>
+        <result property="finish"       column="finish"/>
+        <result property="flat"         column="flat"/>
+        <result property="fruity"       column="fruity"/>
+        <result property="green"        column="green"/>
+        <result property="mouthfeel"    column="mouthfeel"/>
+        <result property="spicy"        column="spicy"/>
+        <result property="structure"    column="structure"/>
+        <result property="tannins"      column="tannins"/>
+        <result property="tobacco"      column="tobacco"/>
+        <result property="vanilla"      column="vanilla"/>
+        <result property="proof"        column="proof"/>
+        <result property="volume"       column="volume"/>
+        <result property="producer"     column="producer"/>
+        <result property="origin"       column="origin"/>
+        <result property="description"  column="description"/>
+        <result property="url"          column="url"/>
+    </resultMap>
+
+    <select id="selectWineSearch" resultMap="wineMap">
+        SELECT *
+        FROM WINE_TBL
+        WHERE name LIKE '%' || #{boardTitle} || '%'
+    </select>
+
+
+
+
+    
+
+</mapper>

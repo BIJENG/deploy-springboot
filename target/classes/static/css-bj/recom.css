@@ -1,0 +1,301 @@
+/* nav 꾸미기 */
+
+/* 네비게이션 바 색상 및 그림자 조정 */
+/* 네비게이션 바의 스타일링 */
+/* nav 꾸미기 */
+
+/* 네비게이션 바 색상 및 그림자 조정 */
+/* 네비게이션 바의 스타일링 */
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+  font-size: 35px;
+  font-weight: 700;
+  margin-right: 50px;
+}
+
+.nav-link {
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.nav-item:last-child {
+  margin-right: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-link:hover {
+  color: #000;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+}
+
+.btn-outline-primary {
+  color: #00b4d8;
+  border-color: #00b4d8;
+}
+
+.btn-outline-primary:hover {
+  background-color: #00b4d8;
+  color: white;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* ----------------------------------------section부분----------------------------------- */
+/* 체크박스 스타일 수정 */
+input[type="checkbox"] {
+  display: none;
+}
+
+.check-box {
+  position: relative;
+  display: inline-block;
+  width: 28px; /* 체크박스 크기 조정 */
+  height: 28px; /* 체크박스 크기 조정 */
+  border: 2px solid #000; /* 체크박스 테두리 스타일 지정 */
+  border-radius: 5px; /* 체크박스 테두리 둥글기 조정 */
+}
+
+.check-box::before {
+  content: "\2713"; /* ✓ 표시 */
+  font-size: 25px; /* 텍스트 크기 */
+  color: transparent; /* 기본적으로 텍스트를 투명하게 설정하여 보이지 않도록 함 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 가운데 정렬 */
+  opacity: 0; /* 기본적으로 표시하지 않음 */
+}
+
+/* 체크된 상태에서의 스타일 */
+input[type="checkbox"]:checked + .check-box::before {
+  color: #34b93d; /* 체크된 상태에서 텍스트를 원하는 색상으로 설정하여 보이도록 함 */
+  opacity: 1; /* 체크된 상태에서 표시하도록 함 */
+}
+
+/* 추가된 스타일 */
+.check-box label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 가운데 정렬 */
+  font-size: 14px; /* 텍스트 크기 조정 */
+}
+
+.choice-title {
+  position: absolute;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  color: #00b4d8;
+  left: 350px;
+}
+
+.choice_check {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  background-color: white;
+}
+
+.choice-item {
+  margin-top: 70px;
+  margin-left: 50px;
+
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.icon-gray {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.icon-color {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
+/* --------------------------- 카드섹션css -------------------------------------- */
+:root {
+  --background-dark: #2d3548;
+  --text-light: rgba(255, 255, 255, 0.6);
+  --text-lighter: rgba(255, 255, 255, 0.9);
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 64px;
+  --width-container: 1200px;
+}
+
+/* *{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+body{
+  height: 100%;
+} */
+
+.hero-section {
+  align-items: flex-start;
+  background-image: white;
+  display: flex;
+  min-height: 100%;
+  justify-content: center;
+  padding: var(--spacing-xxl) var(--spacing-l);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: var(--spacing-l);
+  grid-row-gap: var(--spacing-l);
+  max-width: var(--width-container);
+  width: 100%;
+}
+
+@media (min-width: 540px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  list-style: none;
+  position: relative;
+}
+
+.card:before {
+  content: "";
+  display: block;
+  padding-bottom: 150%;
+  width: 100%;
+}
+
+.card__background {
+  background-size: contain; /* 이미지가 컨테이너 안에 전체적으로 보이도록 설정 */
+  background-repeat: no-repeat; /* 이미지 반복 없이 한 번만 표시 */
+  background-position: center;
+  background-color: rgb(138, 8, 8);
+  border-radius: var(--spacing-l);
+  bottom: 0;
+  filter: brightness(0.75) saturate(1.2) contrast(0.85);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform-origin: center;
+  transform: scale(1) translateZ(0);
+  transition: filter 200ms linear, transform 200ms linear;
+}
+
+.card:hover .card__background {
+  transform: scale(1.05) translateZ(0);
+}
+
+.card-grid:hover > .card:not(:hover) .card__background {
+  filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+}
+
+.card__content {
+  left: 0;
+  padding: var(--spacing-l);
+  position: absolute;
+  top: 270px;
+}
+
+.card__category {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-s);
+  text-transform: uppercase;
+}
+
+.card__heading {
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  line-height: 1.4;
+  text-align: center;
+  word-spacing: normal; /* 수정된 부분 */
+}
+
+.choice_section {
+  position: absolute;
+  left: 350px;
+
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.button-design {
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+}
+
+.button-design:hover {
+  background-color: lightgray; /* 커서가 버튼 위에 있을 때 배경색 변경 */
+  color: white; /* 커서가 버튼 위에 있을 때 글자색 변경 */
+}

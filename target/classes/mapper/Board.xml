@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myboard.dao.BoardDAO">
+
+    <resultMap type="com.example.myboard.vo.BoardVO" id="boardMap">
+        <result property="no"           column="no"/>
+        <result property="id"           column="id"/>
+        <result property="name"         column="name"/>
+        <result property="title"        column="title"/>
+        <result property="content"      column="content"/>
+        <result property="regdate"      column="regdate"/>
+        <result property="vcount"       column="vcount"/>
+        <result property="imgpath"       column="imgpath"/>
+        <result property="totalRows"    column="totalRows"/>
+        <result property="tradeStatus"    column="tradeStatus"/>
+        
+    </resultMap>
+
+     <select id="selectBoardTotalRows" resultMap="boardMap">
+        SELECT COUNT(*) AS TOTALROWS FROM BOARD_TBL
+    </select>
+
+
+    <select id="selectBoardList" resultMap="boardMap">
+        SELECT * 
+        FROM (
+            SELECT ROWNUM AS RN , A.* 
+            FROM (
+                SELECT B.NO, B.ID, U.NAME, B.TITLE, B.REGDATE, B.VCOUNT, B.IMGPATH
+                FROM BOARD_TBL B JOIN USER_TBL U ON B.ID = U.ID
+                WHERE B.TRADESTATUS IS NULL 
+                ORDER BY REGDATE DESC
+            ) A
+        )
+        WHERE RN <![CDATA[ >= ]]> (#{page} - 1) * #{rowsPerPage} + 1
+        AND   RN <![CDATA[ <= ]]> #{page} * #{rowsPerPage}
+    </select>    
+
+
+    <select id="selectBoardContent" resultMap="boardMap">
+        SELECT NO, ID, TITLE, CONTENT, REGDATE, VCOUNT,IMGPATH
+        FROM BOARD_TBL
+        WHERE NO=#{no}
+    </select>
+
+    <update id="updateBoardCount">
+        UPDATE BOARD_TBL SET VCOUNT=VCOUNT+1 
+        WHERE NO=#{no}
+    </update>
+
+    <update id="updateBoardContent">
+        UPDATE BOARD_TBL 
+        SET 
+            TITLE = #{title},
+            CONTENT = #{content},
+            REGDATE = sysdate
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="deleteBoardContent">
+        DELETE FROM BOARD_TBL WHERE no = #{no}
+    </delete>
+
+    <insert id="insertBoardContent">
+        INSERT INTO BOARD_TBL (NO, ID, TITLE, CONTENT, REGDATE, VCOUNT, IMGPATH)
+        VALUES (
+            BOARD_TBL_SEQ.NEXTVAL,
+            #{id},
+            #{title},
+            #{content},
+            sysdate,
+            0,
+            #{imgpath}
+        )
+    </insert>
+
+    <select id="selectBoardSearch" resultMap="boardMap">
+        SELECT no, id, title, content, regdate, vcount, imgpath
+        FROM BOARD_TBL
+        WHERE title LIKE '%' || #{boardTitle} || '%'
+    </select>
+    
+    <!-- 거래하주 게시판 -->
+    <select id="selectTradeBoardList" resultMap="boardMap">
+        SELECT *
+        FROM board_tbl
+        WHERE tradeStatus IN ('판매중', '거래중', '거래완료')
+    </select>
+</mapper>

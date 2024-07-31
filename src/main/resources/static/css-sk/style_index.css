@@ -1,0 +1,222 @@
+@charset 'utf-8';
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+
+.section0-video{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+.video-message.d{
+    transform: translateY(-30%);
+}
+
+.video-message.d a{
+    font-size: 30px;
+    transform: translateY(-30%);
+    opacity: 0;
+    
+}
+
+.video-message{
+    z-index: 5;
+    position: absolute;
+    top: 40%;
+    font-size: 70px;
+    font-weight: bold;
+    color : white;
+    text-align: center;
+}
+
+
+.video-message img {
+    max-width: 100%; /* 이미지가 부모 요소에 맞게 크기 조정 */
+    height: auto; /* 비율 유지 */
+    display: block; /* 블록 요소로 설정하여 가운데 정렬 */
+    opacity: 0;
+    z-index: -100;
+  
+}
+.section0-video .a a{
+
+    text-align: center;
+    color : white;
+    opacity: 1;
+    border: solid;
+    font-size: 50px;
+
+}
+.section0-video .b a{
+
+    text-align: center;
+    color : white;
+    opacity: 1;
+    border: solid;
+    font-size: 50px;
+
+}
+.section0-video .c a{
+
+    text-align: center;
+    color : white;
+    opacity: 1;
+    border: solid;
+    font-size: 50px;
+
+}
+
+.section0-video .a,
+.section0-video .b,
+.section0-video .c,
+.section0-video .d {
+    z-index: 10;
+}
+
+
+
+#seciont1{
+    margin-top: 100px;
+}
+.sticky-top{
+    top:100px;
+}
+
+.sticky-element{
+    height: 2000px;
+  }
+
+.img-message{
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-left : 10px;
+}
+.black-message p {
+    font-family: 'Times New Roman', Times, serif; /* 폰트 변경 */
+    font-size: 50px; /* 폰트 크기 변경 */
+    font-weight: bold; /* 폰트 굵기 변경 */
+    color: #000; /* 폰트 색상 변경 */
+  }
+  .grey-message p{
+    font-family: 'Times New Roman', Times, serif; /* 폰트 변경 */
+    font-size: 30px; /* 폰트 크기 변경 */
+    font-weight: bold; /* 폰트 굵기 변경 */
+    color: grey; /* 폰트 색상 변경 */
+  }
+  .button-font{
+    font-weight: bold;
+  }
+.right-section{
+    margin-top: 20px;
+}
+.section1-element img{
+    max-width: 70%;
+    margin-top: 50px;
+    height: 600px;
+}
+
+
+/* nav 꾸미기 */
+
+/* 네비게이션 바 색상 및 그림자 조정 */
+/* 네비게이션 바의 스타일링 */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    font-size: 35px;
+    font-weight: 700;
+    margin-right: 50px;
+}
+
+.nav-link {
+    color: #333;
+    font-weight: bold;
+
+}
+
+.nav-item {
+    margin-right: 10px; 
+}
+
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+}
+
+.btn-outline-primary {
+    color: #00b4d8;
+    border-color: #00b4d8;
+}
+
+.btn-outline-primary:hover {
+    background-color: #00b4d8;
+    color: white;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.right-section .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-section .row img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px; /* 테두리를 둥글게 만듦 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 부드러운 애니메이션 효과 */
+
+}
+
+/* 이미지에 마우스를 올렸을 때 확대 및 그림자 강조 효과 */
+.right-section .row img:hover {
+    transform: scale(1.05); /* 이미지 확대 효과 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 강조 효과 */
+}
+  
+  
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myboard.dao.UserDAO">
+
+    <resultMap type="com.example.myboard.vo.UserVO" id="userMap">
+        <result property="id"       column="id"/>
+        <result property="passwd"   column="passwd"/>
+        <result property="name"     column="name"/>
+        <result property="phone"    column="phone"/>
+        <result property="email"    column="email"/>
+        <result property="wine"    column="wine"/>
+    </resultMap>
+
+    <select id="selectOneUser" resultMap="userMap">
+        SELECT * FROM USER_TBL 
+        WHERE ID = #{id} AND PASSWD = #{passwd}    
+    </select>
+
+    <insert id="insertOneUser">
+        INSERT INTO USER_TBL(ID, PASSWD, NAME, EMAIL, PHONE) VALUES (
+            #{id}, #{passwd}, #{name}, #{email}, #{phone}
+        )
+    </insert>
+
+
+</mapper>

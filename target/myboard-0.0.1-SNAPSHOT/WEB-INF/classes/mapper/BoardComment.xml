@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myboard.dao.BoardCommentDAO">
+
+    <resultMap type="com.example.myboard.vo.BoardCommentVO" id="boarCommentdMap">
+      
+        <result property="boardcommentno" column="boardcommentno" />
+        <result property="boardcontentno" column="boardcontentno" />
+        <result property="userid" column="userid" />
+        <result property="regdate" column="regdate" />
+        <result property="commentcontent" column="commentcontent" />
+        <result property="wineno" column="wineno" />
+        
+    </resultMap>
+
+    <insert id="insertBoardCommentContent">
+        INSERT INTO board_comment_tbl (boardcommentno, boardcontentno, userid, regdate, commentcontent, wineno)
+        VALUES (
+            board_comment_seq.NEXTVAL,
+            #{boardcontentno},
+            #{userid},
+            sysdate,
+            #{commentcontent},
+            null
+        )
+    </insert>
+
+    <insert id="insertBoardCommentContent2">
+        INSERT INTO board_comment_tbl (boardcommentno, boardcontentno, userid, regdate, commentcontent, wineno)
+        VALUES (
+            board_comment_seq.NEXTVAL,
+            null,
+            #{userid},
+            sysdate,
+            #{commentcontent},
+            #{wineno}
+        )
+    </insert>
+
+    <select id="getCommentsByBoardContentNo" resultMap="boarCommentdMap">
+        SELECT boardcommentno,boardcontentno,userid, commentcontent, regdate 
+        FROM board_comment_tbl 
+        WHERE boardcontentno = #{boardcontentno}
+    </select>  
+
+    <select id="getCommentsByWineNo" resultMap="boarCommentdMap">
+        SELECT boardcommentno, boardcontentno, userid, commentcontent, regdate, wineno
+        FROM board_comment_tbl 
+        WHERE wineno = #{wineno}
+    </select>
+
+
+    
+
+</mapper>
