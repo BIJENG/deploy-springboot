@@ -37,17 +37,6 @@ import="com.example.myboard.vo.UserVO" %>
         opacity: 0.2;
       }
       table#tblBoard tbody tr.completed td::before {
-        content: "";
-        font-size: 2rem;
-        color: red;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        white-space: nowrap;
-      }
-      .completed::after {
         content: "거래완료";
         font-size: 2rem;
         color: red;
@@ -212,21 +201,6 @@ import="com.example.myboard.vo.UserVO" %>
                   '<td class="w-10 align-middle">' +
                   item.vcount +
                   "</td>";
-
-                if (tradeStatus_Eng === "completed") {
-                  const completedText = document.createElement("div");
-                  completedText.textContent = "거래완료";
-                  completedText.style.position = "absolute";
-                  completedText.style.top = "50%";
-                  completedText.style.left = "50%";
-                  completedText.style.transform = "translate(-50%, -50%)";
-                  completedText.style.fontSize = "2rem";
-                  completedText.style.color = "red";
-                  completedText.style.zIndex = "1";
-                  completedText.style.whiteSpace = "nowrap";
-                  $tr.appendChild(completedText);
-                }
-
                 $tbody.appendChild($tr);
               });
             }

@@ -25,7 +25,32 @@
           transform: scale(1.1);
         }
       } 
+      .loginCheck {
+        background-color: #ccc; /* 회색 배경색 설정 */
+        cursor: not-allowed; /* 커서를 포인터 대신 not-allowed로 변경하여 클릭 방지 */
+        position: relative; /* 부모 요소로 설정하여 자식의 절대 위치 설정 */
+      }
 
+      .loginCheck:hover::before {
+        content: "로그인이 필요합니다"; /* hover 상태일 때 텍스트 추가 */
+        position: absolute;
+        bottom: calc(100% + 5px); /* 버튼 위에 위치 */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7); /* 투명한 검은 배경색 */
+        color: #fff; /* 텍스트 색상 */
+        padding: 5px 10px; /* 여백 설정 */
+        border-radius: 5px; /* 모서리 둥글게 */
+        font-size: 12px; /* 폰트 크기 */
+        white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+        display: inline-block; /* 한 줄로 표시 */
+        visibility: hidden; /* 초기에는 보이지 않음 */
+        transition: visibility 0.3s ease; /* 애니메이션 효과 추가 */
+      }
+
+      .loginCheck:hover::before {
+        visibility: visible; /* hover 상태일 때만 텍스트 표시 */
+      }
    
   
   </style>
@@ -101,6 +126,20 @@
   <script>
     (() => {
 
+      const loggedInUser = '<%= session.getAttribute("USER") %>';
+      const tagButtons = document.querySelectorAll('.choice_section button');
+      let loginCheckFlag = false;
+
+      if (loggedInUser === 'null') {
+          tagButtons.forEach(button => {
+              button.classList.add('loginCheck');
+              loginCheckFlag = button.classList.contains('loginCheck');
+              button.addEventListener('click', function(event) {
+                event.preventDefault();
+              });
+            })
+      }
+
       const icon1 = document.getElementById('imageIcon1');
       const icon2 = document.getElementById('imageIcon2');
       const icon3 = document.getElementById('imageIcon3');
@@ -150,6 +189,8 @@
           icon4.classList.add('icon-gray');
         }
       });
+
+     
       
       // 체크박스 상태에 따라 와인 이미지와 이름을 업데이트하는 함수
       function updateWineList(cbtest1, cbtest2, cbtest3, cbtest4) {
@@ -173,6 +214,15 @@
         xhttp.send();
       }
       //-------------------------------------AI추천----------------------------------------------------------//
+
+      
+      window.submitForm = function(value) {
+  
+      if(loginCheckFlag)
+      {
+        return;
+      }
+     
       window.submitForm = function(value) {
         // 페이지를 흐릿하게 만들기
         blurPageExceptNav();
@@ -202,6 +252,7 @@
         xhttp.open("GET", "/board/recommend/keyword?keyword="+ value, true);
         xhttp.send();
       }
+    }
 
       function blurPageExceptNav() {
         // 페이지를 흐릿하게 만들기 (네비게이션 제외)

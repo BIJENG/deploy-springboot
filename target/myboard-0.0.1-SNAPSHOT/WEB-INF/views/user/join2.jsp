@@ -21,7 +21,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="http://localhost:9090/user/index2">SpiritSage</a>
+            <a class="navbar-brand" href="/user/index2">SpiritSage</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,8 +32,8 @@
                             소통하酒
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                            <li><a class="dropdown-item" href="http://localhost:9090/board/recommend">추천하酒</a></li>
-                            <li><a class="dropdown-item" href="http://localhost:9090/board/list">소통하酒</a></li>
+                            <li><a class="dropdown-item" href="/board/recommend">추천하酒</a></li>
+                            <li><a class="dropdown-item" href="/board/list">소통하酒</a></li>
                             <li><a class="dropdown-item" href="#">거래하酒</a></li>
                         </ul>
                     </li>
@@ -42,7 +42,7 @@
                             순위보酒
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                            <li><a class="dropdown-item" href="http://localhost:9090/board/rank">순위보酒</a></li>
+                            <li><a class="dropdown-item" href="/board/rank">순위보酒</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

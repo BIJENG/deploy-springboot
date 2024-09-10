@@ -45,15 +45,15 @@
         <video src="/video/video.mp4" autoplay muted playsinline>대체텍스트</video>
         <div class="video-message a">
           <p>고급스러운 와인</p>
-          <a href="http://localhost:9090/board/recommend">추천하酒</a>
+          <a href="/board/recommend">추천하酒</a>
         </div>
         <div class="video-message b">
           <p>많은 와인 데이터</p>
-          <a href="http://localhost:9090/board/rank">순위보酒</a>
+          <a href="/board/rank">순위보酒</a>
         </div>
         <div class="video-message c">
           <p>특별한날의 와인 찾기</p>
-          <a href="http://localhost:9090/chatPage">Chat酒PT</a>
+          <a href="/chatPage">Chat酒PT</a>
         </div>
 
         <div class="video-message d">

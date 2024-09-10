@@ -19,10 +19,11 @@ public class MainController {
     private UserService userService;
 
     @GetMapping("/")
-    public String root(HttpServletRequest request, Model model) {
-        return index(request, model);
-    }
- 
+public String home() {
+    return "redirect:/user/index2";
+}
+
+
     @GetMapping("/user/index2")
     public String index(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();

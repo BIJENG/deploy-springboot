@@ -62,9 +62,9 @@
     </delete>
 
     <insert id="insertBoardContent">
-        INSERT INTO BOARD_TBL (NO, ID, TITLE, CONTENT, REGDATE, VCOUNT,IMGPATH)
+        INSERT INTO BOARD_TBL (NO, ID, TITLE, CONTENT, REGDATE, VCOUNT, IMGPATH)
         VALUES (
-            (SELECT NVL(MAX(NO),0)+1 FROM BOARD_TBL),
+            BOARD_TBL_SEQ.NEXTVAL,
             #{id},
             #{title},
             #{content},
