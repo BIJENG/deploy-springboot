@@ -19,10 +19,8 @@ import="java.util.List" %> <%@ page import="com.example.myboard.vo.WineVO" %>
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="/css-bj/recom_content.css" />
-    <script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ab3471774620655a66deb82dddd44631&libraries=services,clusterer,drawing"
-    ></script>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ab3471774620655a66deb82dddd44631&libraries=services,clusterer,drawing"></script>
+
   </head>
   <body>
     <%@ include file="/WEB-INF/views/user/navbar.jsp" %> <%@ include
@@ -178,199 +176,150 @@ import="java.util.List" %> <%@ page import="com.example.myboard.vo.WineVO" %>
     </div>
 
     <script>
-      const mapContainer = document.getElementById("map"), // 지도를 표시할 div
-        mapOption = {
+      document.addEventListener("DOMContentLoaded", function () {
+    loadKakaoMap(); // Kakao 지도 스크립트 로드
+});
+
+function loadKakaoMap() {
+    const script = document.createElement("script");
+    script.src =
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=ab3471774620655a66deb82dddd44631&libraries=services,clusterer,drawing";
+    script.async = true;
+    script.onload = function () {
+        kakao.maps.load(initializeMap);
+    };
+    document.head.appendChild(script);
+}
+    </script>
+    <script>
+      function initializeMap() {
+        const mapContainer = document.getElementById("map"); // 지도를 표시할 div
+        const mapOption = {
           center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
           level: 6, // 지도의 확대 레벨
         };
-
-      let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성
-      let infowindow = null; // 현재 열려 있는 인포윈도우를 저장할 변수
-      let prevClickedMarker = null; // 이전에 클릭한 마커를 저장할 변수
-      let ps = new kakao.maps.services.Places();
-
-      shopMarkerImage = new kakao.maps.MarkerImage(
-        "https://cdn-icons-png.flaticon.com/512/4698/4698562.png", // 와인샵 마커 이미지 경로
-        new kakao.maps.Size(40, 40) // 마커 이미지의 크기
-      );
-
-      const myMarkerImageSrc =
-        "https://cdn-icons-png.flaticon.com/512/6986/6986345.png"; // 새 마커 이미지 경로
-      const myMarkerImageSize = new kakao.maps.Size(65, 65); // 새 마커 이미지 크기
-      const myMarkerImage = new kakao.maps.MarkerImage(
-        myMarkerImageSrc,
-        myMarkerImageSize
-      );
-
-      // HTML5의 geolocation으로 사용할 수 있는지 확인
-      if (navigator.geolocation) {
-        // GeoLocation을 이용해서 접속 위치를 얻어옴
-        navigator.geolocation.getCurrentPosition(function (position) {
-          (lat = position.coords.latitude), // 위도
-            (lon = position.coords.longitude); // 경도
-
-          // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
-          (locPosition = new kakao.maps.LatLng(lat, lon)),
-            (message = "<div>현재 위치</div>");
-
-          // 마커와 인포윈도우를 표시
-          displayMarker(locPosition, message, null);
-          searchNearbyWineShops(locPosition); // 주변 와인샵 검색
-        });
-      } else {
-        // GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정
-        (locPosition = new kakao.maps.LatLng(33.450701, 126.570667)),
-          (message = "geolocation을 사용할수 없어요..");
-
-        displayMarker(locPosition, message, null);
-      }
-
-      // 지도에 마커와 인포윈도우를 표시하는 함수
-      function displayMarker(locPosition, message, markerImage) {
-        // 마커를 생성
-        markerOptions = {
-          map: map,
-          position: locPosition,
-          image: myMarkerImage,
-        };
-        if (markerImage) {
-          markerOptions.image = markerImage; // 마커 이미지 설정
-        }
-        marker = new kakao.maps.Marker(markerOptions);
-
-        (iwContent = message), // 인포윈도우에 표시할 내용
-          (iwRemoveable = true);
-
-        // 인포윈도우를 생성
-        infowindow = new kakao.maps.InfoWindow({
-          content: iwContent,
-          removable: iwRemoveable,
-        });
-
-        // 인포윈도우를 마커위에 표시
-        infowindow.open(map, marker);
-
-        // 지도 중심좌표를 접속위치로 변경
-        map.setCenter(locPosition);
-      }
-
-      // 주변 와인샵 검색 함수
-      function searchNearbyWineShops(locPosition) {
-        ps.keywordSearch(
-          "와인샵",
-          function (data, status, pagination) {
-            if (status === kakao.maps.services.Status.OK) {
-              for (i = 0; i < data.length; i++) {
-                displayPlaceMarker(data[i], shopMarkerImage, i);
-              }
-            }
-          },
-          {
-            location: locPosition,
-            radius: 5000, // 검색 반경 설정 (5km)
-          }
+    
+        const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성
+        let infowindow = null; // 현재 열려 있는 인포윈도우를 저장할 변수
+        let prevClickedMarker = null; // 이전에 클릭한 마커를 저장할 변수
+        let ps = new kakao.maps.services.Places();
+    
+        const shopMarkerImage = new kakao.maps.MarkerImage(
+          "https://cdn-icons-png.flaticon.com/512/4698/4698562.png", // 와인샵 마커 이미지 경로
+          new kakao.maps.Size(40, 40) // 마커 이미지의 크기
         );
-      }
+    
+        const myMarkerImageSrc =
+          "https://cdn-icons-png.flaticon.com/512/6986/6986345.png"; // 새 마커 이미지 경로
+        const myMarkerImageSize = new kakao.maps.Size(65, 65); // 새 마커 이미지 크기
+        const myMarkerImage = new kakao.maps.MarkerImage(
+          myMarkerImageSrc,
+          myMarkerImageSize
+        );
+    
+        // HTML5의 geolocation으로 사용할 수 있는지 확인
+        if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            console.log("위치 정보 가져오기 성공:", position.coords);
+            alert(`위도: ${position.coords.latitude}, 경도: ${position.coords.longitude}`);
+        },
+        (error) => {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("위치 정보 사용이 거부되었습니다. 브라우저 설정에서 권한을 허용해주세요.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("위치 정보를 사용할 수 없습니다. 네트워크 상태를 확인해주세요.");
+                    break;
+                case error.TIMEOUT:
+                    alert("위치 정보 요청 시간이 초과되었습니다. 다시 시도해주세요.");
+                    break;
+                default:
+                    alert("알 수 없는 오류가 발생했습니다.");
+            }
+        }
+    );
+} else {
+    alert("사용 중인 브라우저가 위치 정보를 지원하지 않습니다.");
+}
 
-      // 장소에 마커를 표시하는 함수
-      function displayPlaceMarker(place, markerImage, index) {
-        const marker = new kakao.maps.Marker({
-          map: map,
-          position: new kakao.maps.LatLng(place.y, place.x),
-          image: markerImage, // 마커 이미지 설정
-        });
-
-        // 마커 클릭 이벤트 리스너
-        kakao.maps.event.addListener(marker, "click", function () {
-          // 이전에 클릭한 마커가 있고, 현재 클릭한 마커와 같은 경우에는 인포윈도우를 닫습니다.
-          if (prevClickedMarker && prevClickedMarker === marker) {
-            infowindow.close();
-            prevClickedMarker = null;
-            return;
-          } // 이전에 클릭한 마커가 있으면 그 마커의 인포윈도우를 닫습니다.
-          if (prevClickedMarker) {
-            infowindow.close();
+    
+        // 지도에 마커와 인포윈도우를 표시하는 함수
+        function displayMarker(locPosition, message, markerImage) {
+          const markerOptions = {
+            map: map,
+            position: locPosition,
+            image: myMarkerImage,
+          };
+          if (markerImage) {
+            markerOptions.image = markerImage; // 마커 이미지 설정
           }
-
-          // 현재 클릭한 마커에 대한 인포윈도우를 열고, 이전에 클릭한 마커를 현재 클릭한 마커로 설정합니다.
-          const content =
-            '<div style="padding:5px;font-size:12px;">' +
-            place.place_name +
-            "</div>";
-          infowindow.setContent(content);
-          infowindow.open(map, marker);
-          prevClickedMarker = marker;
-        });
-
-        // 마커 호버 이벤트 리스너
-        kakao.maps.event.addListener(marker, "mouseover", function () {
-          // 마우스를 가져다대면 인포윈도우를 표시
-          infowindow.setContent(place.place_name);
-          infowindow.open(map, marker);
-        });
-
-        // 마커 아웃 이벤트 리스너
-        kakao.maps.event.addListener(marker, "mouseout", function () {
-          // 마우스를 벗어나면 인포윈도우 닫기
-          infowindow.close();
-        });
-
-        const shopList = document.getElementById("wineShopList");
-        if (shopList) {
-          // 새로운 리스트 아이템 생성
-          const listItem = document.createElement("li");
-          listItem.id = "shopItem-" + index; // 고유한 id 추가
-          listItem.dataset.lat = place.y; // 와인샵 위도
-          listItem.dataset.lng = place.x; // 와인샵 경도
-
-          // 와인샵 이름 추가
-          const nameElement = document.createElement("span");
-          nameElement.textContent = place.place_name;
-          nameElement.classList.add("wine-name"); // 클래스 추가
-          listItem.appendChild(nameElement);
-
-          // 와인샵 주소 추가
-          if (place.road_address_name) {
-            const addressElement = document.createElement("span");
-            addressElement.textContent = place.road_address_name;
-            addressElement.classList.add("wine-address"); // 클래스 추가
-            listItem.appendChild(addressElement);
-          } else if (place.address_name) {
-            const addressElement = document.createElement("span");
-            addressElement.textContent = place.address_name;
-            addressElement.classList.add("wine-address"); // 클래스 추가
-            listItem.appendChild(addressElement);
-          }
-
-          // 와인샵 번호 추가
-          if (place.phone) {
-            const phoneElement = document.createElement("span");
-            phoneElement.textContent = place.phone;
-            phoneElement.classList.add("wine-phone"); // 클래스 추가
-            listItem.appendChild(phoneElement);
-          }
-
-          // 생성한 리스트 아이템을 리스트에 추가
-          shopList.appendChild(listItem);
-
-          // 리스트 아이템에 마우스 오버 이벤트 추가
-          listItem.addEventListener("mouseover", function () {
-            const lat = parseFloat(this.dataset.lat);
-            const lng = parseFloat(this.dataset.lng);
-            const locPosition = new kakao.maps.LatLng(lat, lng);
-            const message = "<div>" + place.place_name + "</div>";
-
-            // 지도를 해당 위치로 이동시키고 인포윈도우 표시
-            displayMarker(locPosition, message, markerImage);
+          const marker = new kakao.maps.Marker(markerOptions);
+    
+          const iwContent = message; // 인포윈도우 내용
+          const iwRemoveable = true;
+    
+          infowindow = new kakao.maps.InfoWindow({
+            content: iwContent,
+            removable: iwRemoveable,
           });
-
-          listItem.addEventListener("mouseout", function () {
-            // 마우스를 벗어나면 인포윈도우 닫기
-            infowindow.close();
+    
+          infowindow.open(map, marker); // 인포윈도우 열기
+          map.setCenter(locPosition); // 지도 중심좌표 변경
+        }
+    
+        // 주변 와인샵 검색 함수
+        function searchNearbyWineShops(locPosition) {
+          ps.keywordSearch(
+            "와인샵",
+            function (data, status, pagination) {
+              if (status === kakao.maps.services.Status.OK) {
+                for (let i = 0; i < data.length; i++) {
+                  displayPlaceMarker(data[i], shopMarkerImage, i);
+                }
+              }
+            },
+            {
+              location: locPosition,
+              radius: 5000, // 검색 반경 5km
+            }
+          );
+        }
+    
+        // 장소에 마커를 표시하는 함수
+        function displayPlaceMarker(place, markerImage, index) {
+          const marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(place.y, place.x),
+            image: markerImage,
           });
+    
+          kakao.maps.event.addListener(marker, "click", function () {
+            if (prevClickedMarker && prevClickedMarker === marker) {
+              infowindow.close();
+              prevClickedMarker = null;
+              return;
+            }
+            if (prevClickedMarker) {
+              infowindow.close();
+            }
+    
+            const content =
+              '<div style="padding:5px;font-size:12px;">' +
+              place.place_name +
+              "</div>";
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+            prevClickedMarker = marker;
+          });
+    
+          // 마커 호버 및 리스트 관련 추가 코드...
         }
       }
     </script>
+    
+    
 
     <script>
       (() => {

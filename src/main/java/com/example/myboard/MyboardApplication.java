@@ -12,10 +12,8 @@ public class MyboardApplication {
 		SpringApplication.run(MyboardApplication.class, args);
 	}
 
-	 @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 }
-
-
